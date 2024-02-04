@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TechTalkers
 
-## Getting Started
+TechTalkers is a web platform designed to empower individuals in the tech community to showcase their expertise through a social portfolio of talks given at various conferences. It also serves as a resource hub for learning the art of public speaking in tech and provides a curated list of Call for Proposals (CFPs) from around the world.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 1. Talk Profile
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **User Profiles:** Individuals can create profiles where they list the talks they have given, including details such as the number of talks, niche topics, and conferences attended.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Visibility and Credibility:** TechTalkers encourage & helps **Women in tech & newcomers in tech** to build their visibility and credibility within the community.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### 2. Learn Section
 
-## Learn More
+- **Step-by-Step Guide:** The Learn section provides a comprehensive, step-by-step guide and resources for individuals looking to get started with public speaking at tech conferences.
 
-To learn more about Next.js, take a look at the following resources:
+- **Specialized Chat Bot:** Powered by Gemini AI, the chatbot assists learners by answering queries, providing guidance on filling out CFPs, and offering general advice on public speaking.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. CFP Section
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Latest CFPs:** The platform features a CFP section where users can browse the latest Call for Proposals from tech conferences worldwide.
 
-## Deploy on Vercel
+- **Direct Application:** Users can apply to conferences directly through the platform, streamlining the process of submitting proposals.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 4. Connect with Speakers
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Speaker Discovery:** **Organizers searching for speakers in tech** can easily discover profiles of speakers around the world, specifically in niche tech areas.
+
+- **Contact Speakers:** TechTalkers facilitates direct communication between event organizers and speakers, enabling seamless collaboration for upcoming conferences.
+
+### How to Get Started
+
+1. **Create an Account:** Login to TechTalkers and create your personal profile.
+
+2. **Build Your Talk Portfolio:** Add details about the talks you've given & your niche topics.
+
+3. **Explore the Learn Section:** Access the Learn section for a step-by-step guide on getting started with public speaking. Engage with the specialized chatbot for personalized assistance.
+
+4. **Browse Latest CFPs:** Check out the CFP section to explore the latest opportunities to speak at tech conferences globally.
+
+5. **Connect with the Community:** Build connections with other TechTalkers and conference organizers to enhance your visibility in the tech community.
+
+### Technologies Used
+
+- Frontend: Next.js
+- Backend: Node.js, Express
+- Database: MongoDB
+- Authentication: Clerk
+- AI Chat Bot: Powered by Gemini AI
+
