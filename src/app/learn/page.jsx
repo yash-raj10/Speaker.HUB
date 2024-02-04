@@ -289,49 +289,35 @@ const page = () => {
         </li>
       </ul>
 
-      {/* <div className="container mx-auto p-4">
-        <div className="chat-container flex flex-col items-start">
-          <ChatFeed
-            messages={[messages]}
-            onSendMessage={handleSendMessage}
-            user={{ name: "You" }}
-            bot={{ name: "McQueen" }}
-            className="chat-messages overflow-y-auto"
-          />
-          <div>{messages}</div>
-          <div className="chat-input mt-4">
-            <input
-              type="text"
-              placeholder="Type your message..."
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              className="input-field w-full border border-gray-300 rounded-md p-2"
-            />
-            <button
-              onClick={handleSendMessage}
-              className="send-button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
-            >
-              Send
-            </button>
+      <div className="w-full flex  items-center justify-center">
+        <div className="indicator ">
+          <div className="indicator-item indicator-bottom">
+            <form className="btn btn-primary" onSubmit={handleSubmit}>
+              <input
+                className="bg-violet-400  p-2 rounded-lg text-black placeholder-neutral-700 outline-none"
+                value={input}
+                placeholder="Type Here!"
+                onChange={handleInputChange}
+              />
+            </form>
+          </div>
+          <div className="card border ">
+            <div className="card-body max-w-4xl">
+              <h2 className="card-title ">
+                Hey, am your TechTalk Bot, Ask me anything about Learning to
+                talk at Conferences and filling Cfps here!
+              </h2>
+              <div className="">
+                {messages.map((m) => (
+                  <div key={m.id}>
+                    {m.role === "user" ? "User: " : "AI: "}
+                    {m.content}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      </div> */}
-
-      <div>
-        {messages.map((m) => (
-          <div key={m.id}>
-            {m.role === "user" ? "User: " : "AI: "}
-            {m.content}
-          </div>
-        ))}
-
-        <form onSubmit={handleSubmit}>
-          <input
-            value={input}
-            placeholder="Say something..."
-            onChange={handleInputChange}
-          />
-        </form>
       </div>
 
       <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded">
