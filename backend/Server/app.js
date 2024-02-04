@@ -2,11 +2,16 @@ const express =  require('express');
 const morgan = require('morgan');
 const cron = require('node-cron');
 const colors = require('colors')
-const app = express();
 const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+const cors = require('cors')
+
+
+const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
-const mongoose = require('mongoose');
+app.use(cors());
+
 
 dotenv.config();
 
@@ -36,7 +41,7 @@ const scheduledTask = cron.schedule('0 */4 * * *', () => {
 
    
   
-  const port = process.env.PORT
+  const port = 5000
   
    
   app.listen(port,()=>{
