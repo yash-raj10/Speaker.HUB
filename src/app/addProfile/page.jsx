@@ -23,24 +23,46 @@ const page = () => {
   });
 
   const onSubmit = async (data) => {
-    try {
-      const res = await axios.post('http://localhost:5000/api/v1/public/addProfile',data);
-      if(res.data.success){
+  try {
+      const res = await axios.post(
+        "http://localhost:5000/api/v1/public/addProfile",
+        data
+      );
+      
+      if (res.data.success) {
         console.log(res.data.message);
-      }else{
+      } else {
         console.log(res.data.error);
       }
-      try {
-        console.log(data);
-        reset();
-      } finally {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        window.location.href = "/";
-        console.log(data);
-      }
-    } catch (error) {
-      console.log(error);
+    } finally {
+    reset();
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      window.location.href = "/";
+      console.log(data);
     }
+
+
+
+
+    
+    // try {
+    //   const res = await axios.post('http://localhost:5000/api/v1/public/addProfile',data);
+    //   if(res.data.success){
+    //     console.log(res.data.message);
+    //   }else{
+    //     console.log(res.data.error);
+    //   }
+    //   try {
+    //     console.log(data);
+    //     reset();
+    //   } finally {
+    //     await new Promise((resolve) => setTimeout(resolve, 1000));
+    //     window.location.href = "/";
+    //     console.log(data);
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   const setCustomValue = (id, value) => {
