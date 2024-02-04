@@ -167,6 +167,7 @@ export default function Home() {
         {profiles.map((profile) => {
           return (
             <>
+              <div className="cards" id="cards">
               <div
                 // onClick={() => router.push(`/listings/${profile.id}`)}
                 className="col-span-1 cursor-pointer group border-2 border-orange-500 rounded-md text-center "
@@ -202,6 +203,7 @@ export default function Home() {
                   <div className="text-sm">Tech Stack:-{profile.techStack}</div>
                 </div>
               </div>
+                </div>
             </>
           );
         })}
