@@ -11,6 +11,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { FaLink } from "react-icons/fa";
 // import { useNavigate  } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const page = () => {
   // const history = useHistory();
@@ -23,12 +24,22 @@ const page = () => {
 
   const onSubmit = async (data) => {
     try {
-      console.log(data);
-      reset();
-    } finally {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      window.location.href = "/";
-      console.log(data);
+      const res = await axios.post('http://localhost:5000/api/v1/public/addProfile',data);
+      if(res.data.success){
+        console.log(res.data.message);
+      }else{
+        console.log(res.data.error);
+      }
+      try {
+        console.log(data);
+        reset();
+      } finally {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        window.location.href = "/";
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
