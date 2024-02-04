@@ -99,7 +99,7 @@ export default function Home() {
         "http://localhost:5000/api/v1/public/fetchAllProfiles",
       );
       console.log(res.data);
-      setProfiles(res.data);
+      setProfiles(res.data.data);
       console.log(profiles);
   }
   getProfiles();
