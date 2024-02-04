@@ -12,7 +12,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { UserButton } from "@clerk/nextjs";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
 
@@ -102,7 +102,9 @@ export default function Home() {
       setProfiles(res.data.data);
       console.log(profiles);
   }
-  getProfiles();
+  useEffect(() => {
+    getProfiles();
+  },[])
 
   return (
     <>
