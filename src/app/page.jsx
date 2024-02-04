@@ -11,8 +11,13 @@ import { GiSpiderWeb } from "react-icons/gi";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { UserButton } from "@clerk/nextjs";
+import axios from "axios";
+import { useState } from "react";
 
 export default function Home() {
+
+  const [profiles, setProfiles] = useState([]);
+
   function liveSearch() {
     let cards = document.querySelectorAll(".cards");
     let search_query = document.getElementById("searchbox").value;
@@ -62,29 +67,42 @@ export default function Home() {
     },
   ];
 
-  const profiles = [
-    {
-      imageSrc:
-        "https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?w=996&t=st=1706732147~exp=1706732747~hmac=6a14dddc22cdf18bb2ab095db42076b9113c84a5dc2888ba6dacd7edde63e98a",
-      location: "Delhi, India",
-      name: "Ben",
-      techStack: "fhweio vfuhsoei fhjuosieuf jhoweif oiew",
-      Experince: "Student",
-    },
-    {
-      imageSrc:
-        "https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?w=996&t=st=1706732147~exp=1706732747~hmac=6a14dddc22cdf18bb2ab095db42076b9113c84a5dc2888ba6dacd7edde63e98a",
-      location: "Delhi, India",
-      name: "Ben",
-      techStack: "fhweio vfuhsoei fhjuosieuf jhoweif oiew",
-      Experince: "Student",
-    },
-    // {
-    //   imageSrc:
-    //     "https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?w=996&t=st=1706732147~exp=1706732747~hmac=6a14dddc22cdf18bb2ab095db42076b9113c84a5dc2888ba6dacd7edde63e98a",
-    //   location: "PiStudentDuotone",
-    // },
-  ];
+  // var profiles = [
+  //   {
+  //     imageSrc:
+  //       "https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?w=996&t=st=1706732147~exp=1706732747~hmac=6a14dddc22cdf18bb2ab095db42076b9113c84a5dc2888ba6dacd7edde63e98a",
+  //     location: "Delhi, India",
+  //     name: "Ben",
+  //     techStack: "fhweio vfuhsoei fhjuosieuf jhoweif oiew",
+  //     Experince: "Student",
+  //   },
+  //   {
+  //     imageSrc:
+  //       "https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?w=996&t=st=1706732147~exp=1706732747~hmac=6a14dddc22cdf18bb2ab095db42076b9113c84a5dc2888ba6dacd7edde63e98a",
+  //     location: "Delhi, India",
+  //     name: "Ben",
+  //     techStack: "fhweio vfuhsoei fhjuosieuf jhoweif oiew",
+  //     Experince: "Student",
+  //   },
+  //   {
+  //     imageSrc:
+  //       "https://img.freepik.com/free-photo/young-bearded",
+  //     location: "Delhi, India",
+  //     name: "Ben",
+  //     techStack: "Python, C++, Java, Rust",
+  //     Experince: "Student",
+  //   },
+  // ];
+
+  async function getProfiles() {
+          const res = await axios.get(
+        "http://localhost:5000/api/v1/public/fetchAllProfiles",
+      );
+      console.log(res.data);
+      setProfiles(res.data);
+      console.log(profiles);
+  }
+  getProfiles();
 
   return (
     <>
@@ -133,7 +151,7 @@ export default function Home() {
 
         <div className=" w-3/12  border h-32  flex flex-col  justify-center items-center bg-orange-500 rounded-2xl ">
           <h1 className=" text-neutral-800">Find Any Tech Speakers!</h1>
-          <div class="  mx-2 text-gray-600 ">
+          <div className="  mx-2 text-gray-600 ">
             <input
               type="search"
               id="searchbox"
