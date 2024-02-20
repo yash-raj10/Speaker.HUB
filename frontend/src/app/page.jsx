@@ -15,7 +15,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-
   const [profiles, setProfiles] = useState([]);
 
   function liveSearch() {
@@ -67,44 +66,19 @@ export default function Home() {
     },
   ];
 
-  // var profiles = [
-  //   {
-  //     imageSrc:
-  //       "https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?w=996&t=st=1706732147~exp=1706732747~hmac=6a14dddc22cdf18bb2ab095db42076b9113c84a5dc2888ba6dacd7edde63e98a",
-  //     location: "Delhi, India",
-  //     name: "Ben",
-  //     techStack: "fhweio vfuhsoei fhjuosieuf jhoweif oiew",
-  //     Experince: "Student",
-  //   },
-  //   {
-  //     imageSrc:
-  //       "https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?w=996&t=st=1706732147~exp=1706732747~hmac=6a14dddc22cdf18bb2ab095db42076b9113c84a5dc2888ba6dacd7edde63e98a",
-  //     location: "Delhi, India",
-  //     name: "Ben",
-  //     techStack: "fhweio vfuhsoei fhjuosieuf jhoweif oiew",
-  //     Experince: "Student",
-  //   },
-  //   {
-  //     imageSrc:
-  //       "https://img.freepik.com/free-photo/young-bearded",
-  //     location: "Delhi, India",
-  //     name: "Ben",
-  //     techStack: "Python, C++, Java, Rust",
-  //     Experince: "Student",
-  //   },
-  // ];
-
-  async function getProfiles() {
-          const res = await axios.get(
-        "http://localhost:5000/api/v1/public/fetchAllProfiles",
-      );
-      console.log(res.data);
-      setProfiles(res.data.data);
-      console.log(profiles);
-  }
   useEffect(() => {
+    const getProfiles = async () => {
+      try {
+        const response = await axios.get("http://localhost:4000/api/profiles");
+        console.log(response.data);
+        setProfiles(response.data);
+      } catch (error) {
+        console.log(`Error fetching data`, error);
+      }
+    };
+
     getProfiles();
-  },[])
+  }, []);
 
   return (
     <>
@@ -170,42 +144,42 @@ export default function Home() {
           return (
             <>
               <div className="cards" id="cards">
-              <div
-                // onClick={() => router.push(`/listings/${profile.id}`)}
-                className="col-span-1 cursor-pointer group border-2 border-orange-500 rounded-md text-center "
-              >
-                <div className=" flex flex-col gap-2 w-full justify-center items-center mt-2">
-                  <div className=" aspect-square w-3/4 relative overflow-hidden rounded-xl ">
-                    <Image
-                      fill
-                      alt="Listings"
-                      src={profile.imageSrc}
-                      className=" object-cover h-full w-full group-hover:scale-110 transition"
-                    />
-                    <div className="absolute -bottom-[2px] -right-[0px] px-2 pb-[2px] mb-1 text-sm  rounded-full border  bg-white ">
-                      {profile.location}
-                    </div>
-                    <div className="absolute top-[1px] px-1  text-xs  rounded-none border  bg-white ">
-                      {profile.Experince}
+                <div
+                  // onClick={() => router.push(`/listings/${profile.id}`)}
+                  className="col-span-1 cursor-pointer group border-2 border-orange-500 rounded-md text-center "
+                >
+                  <div className=" flex flex-col gap-2 w-full justify-center items-center mt-2">
+                    <div className=" aspect-square w-3/4 relative overflow-hidden rounded-xl ">
+                      <Image
+                        fill
+                        alt="Listings"
+                        src={profile.imagesrc}
+                        className=" object-cover h-full w-full group-hover:scale-110 transition"
+                      />
+                      <div className="absolute -bottom-[2px] -right-[0px] px-2 pb-[2px] mb-1 text-sm  rounded-full border  bg-white ">
+                        {profile.isa}
+                      </div>
+                      <div className="absolute top-[1px] px-1  text-xs  rounded-none border  bg-white ">
+                        {profile.name}
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="font-semibold mt-1 text-lg flex flex-row items-center justify-around">
-                  <div>{profile.name}</div>
-                  <div className="  gap-2 flex flex-row ">
-                    {" "}
-                    <FaLinkedin size={26} />
-                    <span className="border-l  "></span>
-                    <FaGithub size={26} />
+                  <div className="font-semibold mt-1 text-lg flex flex-row items-center justify-around">
+                    <div>{profile.name}</div>
+                    <div className="  gap-2 flex flex-row ">
+                      {" "}
+                      <FaLinkedin size={26} />
+                      <span className="border-l  "></span>
+                      <FaGithub size={26} />
+                    </div>
                   </div>
-                </div>
 
-                <div className=" mt-1  flex flex-row items-center border-t  justify-around">
-                  <div className="text-sm">Tech Stack:-{profile.techStack}</div>
+                  <div className=" mt-1  flex flex-row items-center border-t  justify-around">
+                    <div className="text-sm">Tech Stack:-{profile.github}</div>
+                  </div>
                 </div>
               </div>
-                </div>
             </>
           );
         })}
