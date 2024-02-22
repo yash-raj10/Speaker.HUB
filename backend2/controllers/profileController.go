@@ -66,10 +66,12 @@ func getAllProfile() []bson.M {
 
 //fr
 func GetAllProfiles(w http.ResponseWriter, r *http.Request){
-	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
+	w.Header().Set("Content-Type", "application/json")
 	allProfiles := getAllProfile()
 	json.NewEncoder(w).Encode(allProfiles)
 }
+
+
 
 func AddProfile(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Content-Type", "application/json")
@@ -79,12 +81,16 @@ func AddProfile(w http.ResponseWriter, r *http.Request){
 	var profile models.Profile
 	fmt.Println("Request Body:", r.Body)
 	err := json.NewDecoder(r.Body).Decode(&profile)
+	
 	if err != nil{
 		http.Error(w, err.Error(), http.StatusBadRequest)
     
         return
 	}
 	
+
+
+
 	addOneProfile(profile)
 
 	json.NewEncoder(w).Encode(profile)

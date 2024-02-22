@@ -5,12 +5,6 @@ import React, { useState, useEffect } from "react";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { AiFillGithub } from "react-icons/ai";
 import { FaLinkedin } from "react-icons/fa";
-import { Chat, ChatFeed } from "react-chat-ui";
-import {
-  GoogleGenerativeAI,
-  HarmCategory,
-  HarmBlockThreshold,
-} from "@google/generative-ai";
 import Link from "next/link";
 import Image from "next/image";
 

@@ -9,13 +9,10 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FaLink } from "react-icons/fa";
-// import { useNavigate  } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 const page = () => {
-  // const history = useHistory();
-
   const { register, setValue, watch, reset, handleSubmit } = useForm({
     defaultValues: {
       imageSrc: "",
@@ -23,28 +20,27 @@ const page = () => {
   });
 
   const onSubmit = async (data) => {
-  try {
+    if (data.woman !== "WIT") {
+      data.woman = "no"; // or data.woman = false;
+    }
+    try {
       const res = await axios.post(
-        "http://localhost:5000/api/v1/public/addProfile",
+        "http://localhost:4000/api/addProfile",
         data
       );
-      
+
       if (res.data.success) {
         console.log(res.data.message);
       } else {
         console.log(res.data.error);
       }
     } finally {
-    reset();
+      reset();
       await new Promise((resolve) => setTimeout(resolve, 1000));
       window.location.href = "/";
       console.log(data);
     }
 
-
-
-
-    
     // try {
     //   const res = await axios.post('http://localhost:5000/api/v1/public/addProfile',data);
     //   if(res.data.success){
@@ -247,7 +243,7 @@ const page = () => {
                 <input
                   // id={id}
                   // disabled={disabled}
-                  {...register("tech stack")}
+                  {...register("techStack")}
                   placeholder=" "
                   className={` peer  w-full p-5 pt-6 font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed pl-4 border-neutral-300 focus:border-black`}
                 />
@@ -292,7 +288,6 @@ const page = () => {
               <div className="flex w-full p-5 pt-6 border-2 mt-2 border-neutral-300 rounded-md ">
                 <p>Are you a Woman in Tech ? </p>
                 <span className="pl-10">
-                  {" "}
                   <input
                     type="checkbox"
                     id="WIT"
@@ -315,7 +310,7 @@ const page = () => {
                       type="checkbox"
                       id="Experience"
                       value="Experienced"
-                      {...register("Experience")}
+                      // {...register("Experience")}
                     />
                     <label className="p-1" htmlFor="Experience">
                       Yes
