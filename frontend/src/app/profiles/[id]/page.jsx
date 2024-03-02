@@ -8,7 +8,6 @@ import { AiFillGithub } from "react-icons/ai";
 import { IoIosDoneAll } from "react-icons/io";
 import Link from "next/link";
 import axios from "axios";
-// import { response } from "express";
 
 async function getProfile(id) {
   try {
@@ -24,16 +23,11 @@ async function getProfile(id) {
 
 export default async function page({ params }) {
   const id = await params.id;
-  console.log(typeof id);
+  console.log(id);
   const profile = await getProfile(params.id);
-  console.log(typeof profile);
-  // const talk1 = "Experinced";
-  // const talk2 = "yo";
 
   return (
     <>
-      {/* <div>{id}</div>
-      <div>{profile.name}</div> */}
       <span className="h-screen ">
         <div className=" flex flex-col mx-6 my-3">
           <span className="font-semibold">{profile.name}</span>

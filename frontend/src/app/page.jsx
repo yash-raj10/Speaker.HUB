@@ -145,10 +145,7 @@ export default function Home() {
           <>
             <div key={profile._id} className="cards" id="cards">
               <Link href={`/profiles/${profile._id}`}>
-                <div
-                  // onClick={() => router.push(`/listings/${profile.id}`)}
-                  className="col-span-1 cursor-pointer group border-2 border-orange-500 rounded-md text-center "
-                >
+                <div className="col-span-1 cursor-pointer group border-2 border-orange-500 rounded-md text-center ">
                   <div className=" flex flex-col gap-2 w-full justify-center items-center mt-2">
                     <div className=" aspect-square w-3/4 relative overflow-hidden rounded-xl ">
                       <Image
