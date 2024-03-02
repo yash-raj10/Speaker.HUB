@@ -1,8 +1,9 @@
+"use server";
+
 import Image from "next/image";
 import React from "react";
 import { FaLinkedin } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { FaLink } from "react-icons/fa";
 import { AiFillGithub } from "react-icons/ai";
 import { IoIosDoneAll } from "react-icons/io";

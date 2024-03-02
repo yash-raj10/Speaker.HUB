@@ -9,8 +9,6 @@ import { FaRust } from "react-icons/fa";
 import { PiStudentDuotone } from "react-icons/pi";
 import { GiSpiderWeb } from "react-icons/gi";
 import { FaLinkedin } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
-import { UserButton } from "@clerk/nextjs";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Link from "next/link";

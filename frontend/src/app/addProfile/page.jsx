@@ -1,7 +1,7 @@
 "use client";
+
 import React, { useCallback } from "react";
 import { AiFillGithub } from "react-icons/ai";
-import { FcGoogle } from "react-icons/fc";
 import { CldUploadWidget } from "next-cloudinary";
 import Image from "next/image";
 import { TbPhotoPlus } from "react-icons/tb";
@@ -9,10 +9,13 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FaLink } from "react-icons/fa";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { useUser } from "@clerk/nextjs";
 
 const page = () => {
+  const { user } = useUser();
+  console.log(user.fullName);
+
   const { register, setValue, watch, reset, handleSubmit } = useForm({
     defaultValues: {
       imageSrc: "",
