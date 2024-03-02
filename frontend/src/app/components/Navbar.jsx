@@ -5,18 +5,12 @@ import { AiOutlineMenu } from "react-icons/ai";
 import Link from "next/link";
 import Image from "next/image";
 import { UserButton } from "@clerk/nextjs";
-
-// import ReactSVG from "react-svg";
-// import SvgLogo from "@/app/components/yoo.svg";
 import useLoginModel from "../hooks/useLoginModel";
 
 const roboto = Roboto({
   weight: "400",
   subsets: ["latin"],
 });
-
-//login
-//session, currentuser
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +23,7 @@ export const Navbar = () => {
 
   return (
     <div className={roboto.className}>
-      <div className="flex justify-between items-center border shadow-md py-1">
+      <div className=" bg-red-500 flex justify-between items-center border shadow-md py-1">
         <div className=" hidden md:flex lg:flex gap-1  items-center ">
           {/* <p>Followers: {ProfilePage.data.}</p> */}
 
@@ -46,7 +40,7 @@ export const Navbar = () => {
           {/* <ReactSVG src={SvgLogo} /> */}
           <span className=" font-extrabold text-xl">TechTalkers!</span>
         </div>
-        <div className="flex border gap-3.5 border-gray-300 rounded-2xl shadow-sm shadow-gray-400 px-2 py-1 m-1">
+        <div className="flex border gap-3.5 bg-slate-100 border-gray-300 rounded-2xl shadow-sm shadow-gray-400 px-2 py-1 m-1">
           <Link href="/">
             {" "}
             <div className=" items-center flex">Profiles </div>
@@ -66,7 +60,7 @@ export const Navbar = () => {
 
         {/* ----------------------------------UserMenu--------------------------------------------- */}
 
-        <div className="flex border gap-3 border-gray-300 rounded-2xl shadow-sm shadow-gray-400 px-2 py-[2px] m-1">
+        <div className="flex border gap-3 bg-slate-100 border-gray-300 rounded-2xl shadow-sm shadow-gray-400 px-2 py-[2px] m-1">
           <Link href="/addProfile" className="items-center flex">
             {" "}
             Add YourSelf!

@@ -21,7 +21,11 @@ const page = () => {
 
   const onSubmit = async (data) => {
     if (data.woman !== "WIT") {
-      data.woman = "no"; // or data.woman = false;
+      data.woman = "No"; // or data.woman = false;
+    }
+
+    if (data.experience !== "Experienced") {
+      data.experience = "No"; // or data.woman = false;
     }
     try {
       const res = await axios.post(
@@ -36,8 +40,8 @@ const page = () => {
       }
     } finally {
       reset();
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      window.location.href = "/";
+      // await new Promise((resolve) => setTimeout(resolve, 1000));
+      // window.location.href = "/";
       console.log(data);
     }
 
@@ -310,7 +314,7 @@ const page = () => {
                       type="checkbox"
                       id="Experience"
                       value="Experienced"
-                      // {...register("Experience")}
+                      {...register("experience")}
                     />
                     <label className="p-1" htmlFor="Experience">
                       Yes

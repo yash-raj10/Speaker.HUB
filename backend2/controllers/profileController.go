@@ -7,7 +7,9 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/gorilla/mux"
 	"github.com/yash-raj10/techTalkers-Backend/models"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"gopkg.in/mgo.v2/bson"
@@ -63,12 +65,35 @@ func getAllProfile() []bson.M {
 
 }
 
+func getOneProfile( profileID string) bson.M {
+	id, _ := primitive.ObjectIDFromHex(profileID)
+	
+	var profile bson.M
+	err := collection.FindOne(context.Background(), bson.M{"_id": id}).Decode(&profile)
+    if err != nil {
+        log.Fatal(err)
+    }
+	
+	return profile
+
+}
+
 
 //fr
 func GetAllProfiles(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Content-Type", "application/json")
 	allProfiles := getAllProfile()
 	json.NewEncoder(w).Encode(allProfiles)
+}
+
+func GetOneProfile(w http.ResponseWriter, r *http.Request){
+	w.Header().Set("Content-Type", "application/json")
+
+
+	params := mux.Vars(r)
+	singleProfile := getOneProfile(params["id"])
+	json.NewEncoder(w).Encode(singleProfile)
+
 }
 
 
@@ -84,17 +109,14 @@ func AddProfile(w http.ResponseWriter, r *http.Request){
 	
 	if err != nil{
 		http.Error(w, err.Error(), http.StatusBadRequest)
-    
         return
 	}
 	
-
-
-
 	addOneProfile(profile)
-
 	json.NewEncoder(w).Encode(profile)
 }
+
+
 
 
 

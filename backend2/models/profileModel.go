@@ -17,4 +17,5 @@ type Profile struct {
 	TechStack string        `json:"techStack" `
 	Twtr    string        `json:"twtr" `
 	Woman    string        `json:"woman"`
+	Experience string   `json:"experience"`
 }

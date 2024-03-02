@@ -4,7 +4,7 @@ import { FcBusinesswoman } from "react-icons/fc";
 import { GrUserExpert } from "react-icons/gr";
 import { GiArtificialIntelligence } from "react-icons/gi";
 import { RiOpenSourceFill } from "react-icons/ri";
-import { FaGolang } from "react-icons/fa6";
+import { FaGolang, FaSquareXTwitter, FaX } from "react-icons/fa6";
 import { FaRust } from "react-icons/fa";
 import { PiStudentDuotone } from "react-icons/pi";
 import { GiSpiderWeb } from "react-icons/gi";
@@ -13,6 +13,7 @@ import { FaGithub } from "react-icons/fa";
 import { UserButton } from "@clerk/nextjs";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
   const [profiles, setProfiles] = useState([]);
@@ -125,8 +126,8 @@ export default function Home() {
           </div>
         ))}
 
-        <div className=" w-3/12  border h-32  flex flex-col  justify-center items-center bg-orange-500 rounded-2xl ">
-          <h1 className=" text-neutral-800">Find Any Tech Speakers!</h1>
+        <div className=" w-3/12  border h-32  flex flex-col  justify-center items-center bg-red-500 rounded-2xl ">
+          <h1 className=" text-neutral-800">Search Speakers.</h1>
           <div className="  mx-2 text-gray-600 ">
             <input
               type="search"
@@ -140,10 +141,10 @@ export default function Home() {
       </div>
 
       <div className=" mt-4 px-9 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
-        {profiles.map((profile) => {
-          return (
-            <>
-              <div className="cards" id="cards">
+        {profiles.map((profile) => (
+          <>
+            <div key={profile._id} className="cards" id="cards">
+              <Link href={`/profiles/${profile._id}`}>
                 <div
                   // onClick={() => router.push(`/listings/${profile.id}`)}
                   className="col-span-1 cursor-pointer group border-2 border-orange-500 rounded-md text-center "
@@ -156,11 +157,11 @@ export default function Home() {
                         src={profile.imagesrc}
                         className=" object-cover h-full w-full group-hover:scale-110 transition"
                       />
-                      <div className="absolute -bottom-[2px] -right-[0px] px-2 pb-[2px] mb-1 text-sm  rounded-full border  bg-white ">
+                      <div className="absolute -bottom-[2px] -right-[0px] px-2 pb-[2px] mb-[2px] text-sm  rounded-full border  bg-white ">
                         {profile.isa}
                       </div>
                       <div className="absolute top-[1px] px-1  text-xs  rounded-none border  bg-white ">
-                        {profile.name}
+                        {profile.location}
                       </div>
                     </div>
                   </div>
@@ -168,21 +169,42 @@ export default function Home() {
                   <div className="font-semibold mt-1 text-lg flex flex-row items-center justify-around">
                     <div>{profile.name}</div>
                     <div className="  gap-2 flex flex-row ">
-                      {" "}
-                      <FaLinkedin size={26} />
-                      <span className="border-l  "></span>
-                      <FaGithub size={26} />
+                      {profile.linkedin && (
+                        <>
+                          <Link
+                            href={
+                              "https://www.linkedin.com/in/" + profile.linkedin
+                            }
+                          >
+                            {" "}
+                            <FaLinkedin size={26} />
+                          </Link>
+                        </>
+                      )}
+
+                      {profile.twtr && (
+                        <>
+                          <span className="border-l  "></span>
+
+                          <Link href={"https://twitter.com/" + profile.twtr}>
+                            {" "}
+                            <FaSquareXTwitter size={26} />
+                          </Link>
+                        </>
+                      )}
                     </div>
                   </div>
 
-                  <div className=" mt-1  flex flex-row items-center border-t  justify-around">
-                    <div className="text-sm">Tech Stack:-{profile.github}</div>
+                  <div className=" mt-1  flex flex-row items-center border-t p-2 justify-around">
+                    <div className="text-sm">
+                      Tech Stack:-{profile.techstack}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </>
-          );
-        })}
+              </Link>
+            </div>
+          </>
+        ))}
       </div>
     </>
   );
