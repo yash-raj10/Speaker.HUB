@@ -30,7 +30,16 @@ async function deleteCFP(){
   }
 }
 
+async function caller(){
+  try {
+    deleteCFP().then(fetchAndStoreEvents());
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 async function fetchAllCfps(req,res){
+  console.log("received")
     try {
         const Cfps = await Conference.find({});
         if(Cfps){
@@ -50,4 +59,4 @@ async function fetchAllCfps(req,res){
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
-module.exports = {fetchAndStoreEvents,deleteCFP,fetchAllCfps};
+module.exports = {fetchAndStoreEvents,deleteCFP,fetchAllCfps,caller};

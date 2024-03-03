@@ -5,12 +5,14 @@ const colors = require("colors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const { deleteCFP, fetchAndStoreEvents } = require("../Controllers/cfpController");
+const Conference = require("../Models/ConferenceModel");
+// const { deleteCFP, fetchAndStoreEvents, caller } = require("../Controllers/cfpController");
 
 const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors());
+app.use("/api/v1/public", require("../Api-Routes/publicRoutes"));
 
 dotenv.config();
 
@@ -25,18 +27,46 @@ const connectDB = async () => {
   }
 };
 
-connectDB();
+async function fetchAndStoreEvents() {
+  try {
+    const response = await fetch('https://developers.events/all-cfps.json');
+    
 
-deleteCFP();
-fetchAndStoreEvents();
+    var cfpdata = await response.json();
+    var currentdate = new Date()
+    cfpdata = cfpdata.filter(cfp => new Date(cfp.untilDate) >= currentdate);
+    try {
+        await Conference.create(cfpdata)
+        console.log('data successfully imported')
+    } catch (error) {
+        console.log("Error:",error)
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
 
-const job = schedule.scheduleJob('0 2 * * *', function(){
-  deleteCFP();
-  fetchAndStoreEvents();
+async function deleteCFP(){
+  try {
+    await Conference.deleteMany({})
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+async function caller(){
+  try {
+    deleteCFP().then(fetchAndStoreEvents());
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+connectDB().then(caller());
+
+const job = schedule.scheduleJob('0 3 * * *', function(){
+  caller();
 })
-
-
-app.use("/api/v1/public", require("../Api-Routes/publicRoutes"));
 
 const port = process.env.PORT;
 
