@@ -38,7 +38,7 @@ export const Navbar = () => {
             <path d="M8 12c0 2.206 1.794 4 4 4s4-1.794 4-4h-2v-2h2V8h-2V6h2c0-2.217-1.785-4.021-3.979-4.021a.933.933 0 0 0-.209.025A4.006 4.006 0 0 0 8 6h4v2H8v2h4v2H8z"></path>
           </svg>
           {/* <ReactSVG src={SvgLogo} /> */}
-          <span className=" font-extrabold text-xl">TechTalkers!</span>
+          <span className=" font-extrabold text-xl">Speaker.HUB!</span>
         </div>
         <div className="flex border gap-3.5 bg-slate-100 border-gray-300 rounded-2xl shadow-sm shadow-gray-400 px-2 py-1 m-1">
           <Link href="/">

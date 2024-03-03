@@ -43,9 +43,7 @@ export default async function page({ params }) {
             />
           </div>
           <div className=" flex-col flex  w-1/2 h-1/2 mr-4 ">
-            <span className="font-semibold">
-              Tech Stack {profile.name} have Experiance With:-
-            </span>
+            <span className="font-semibold">Skills {profile.name} have :-</span>
             <div className="w-full p-5  border-2 mt-2 border-neutral-300 rounded-md ">
               <p>{profile.techstack}</p>
             </div>
