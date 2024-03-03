@@ -1,23 +1,24 @@
 const express = require("express");
 const morgan = require("morgan");
-const cron = require("node-cron");
+const schedule = require('node-schedule');
 const colors = require("colors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const Conference = require("../Models/ConferenceModel");
+// const { deleteCFP, fetchAndStoreEvents, caller } = require("../Controllers/cfpController");
 
 const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors());
+app.use("/api/v1/public", require("../Api-Routes/publicRoutes"));
 
 dotenv.config();
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://AdminAditya:Q2qCMhZrQbUWLTMi@cluster0doc.7h1k7mi.mongodb.net/"
-    );
+    await mongoose.connect(process.env.MONGO_URL);
     console.log(
       `MongoDB server connected to ${mongoose.connection.host}`.bgCyan.black
     );
@@ -26,25 +27,48 @@ const connectDB = async () => {
   }
 };
 
-connectDB();
+async function fetchAndStoreEvents() {
+  try {
+    const response = await fetch('https://developers.events/all-cfps.json');
+    
 
-const scheduledTask = cron.schedule(
-  "0 */4 * * *",
-  () => {
-    deleteCFP();
-    fetchAndStoreEvents();
-  },
-  {
-    scheduled: true,
-    timezone: "America/New_York",
+    var cfpdata = await response.json();
+    var currentdate = new Date()
+    cfpdata = cfpdata.filter(cfp => new Date(cfp.untilDate) >= currentdate);
+    try {
+        await Conference.create(cfpdata)
+        console.log('data successfully imported')
+    } catch (error) {
+        console.log("Error:",error)
+    }
+  } catch (error) {
+    console.error('Error:', error);
   }
-);
+}
 
-scheduledTask.start();
+async function deleteCFP(){
+  try {
+    await Conference.deleteMany({})
+  } catch (error) {
+    console.log(error)
+  }
+}
 
-app.use("/api/v1/public", require("../Api-Routes/publicRoutes"));
+async function caller(){
+  try {
+    deleteCFP().then(fetchAndStoreEvents());
+  } catch (error) {
+    console.log(error)
+  }
+}
 
-const port = 5000;
+connectDB().then(caller());
+
+const job = schedule.scheduleJob('0 3 * * *', function(){
+  caller();
+})
+
+const port = process.env.PORT;
 
 app.listen(port, () => {
   console.log(
