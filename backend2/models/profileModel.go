@@ -14,6 +14,9 @@ type Profile struct {
 	Talk1Link string        `json:"talk1Link"`
 	Talk2    string        `json:"talk2" `
 	Talk2Link   string        `json:"talk2Link" `
+	Talk3    string        `json:"talk3" `
+	Talk3Link   string        `json:"talk3Link" `
+	Field		 string		 `json:"field"`
 	TechStack string        `json:"techStack" `
 	Twtr    string        `json:"twtr" `
 	Woman    string        `json:"woman"`

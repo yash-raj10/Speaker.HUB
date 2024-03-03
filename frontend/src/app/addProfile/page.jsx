@@ -14,7 +14,7 @@ import { useUser } from "@clerk/nextjs";
 
 const page = () => {
   const { user } = useUser();
-  console.log(user.fullName);
+  // console.log(user.fullName);
 
   const { register, setValue, watch, reset, handleSubmit } = useForm({
     defaultValues: {
@@ -94,13 +94,14 @@ const page = () => {
     items-center
     flex
     overflow-x-hidden
-    overflow-y-hidden
+    overflow-y-scroll
     fixed
     inset-0
     z-50
     outline-none
     focus:outline-none
-    bg-neutral-800/70"
+    bg-neutral-800/70
+    "
     >
       <div className="relative w-full md:w-4/6 lg:w-2/5 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto">
         <div
@@ -111,7 +112,7 @@ const page = () => {
         translate-y-0
         opacity-100"
         >
-          <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+          <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none ">
             <div className="flex items-center p-6 rounded-t justify-center relative border-b-[1px]">
               <div className="text-lg font-semibold">OnBoard Yourself!</div>
             </div>
@@ -149,8 +150,6 @@ const page = () => {
               <div className="flex flex-col gap-4 mt-3">
                 <div className="w-full  relative">
                   <input
-                    // id={id}
-                    // disabled={disabled}
                     {...register("name")}
                     placeholder=" "
                     className={` peer  w-full p-5 pt-6 font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed pl-4 border-neutral-300 focus:border-black`}
@@ -163,8 +162,6 @@ const page = () => {
                 </div>
                 <div className="w-full  relative">
                   <input
-                    // id={id}
-                    // disabled={disabled}
                     {...register("location")}
                     placeholder=" "
                     className={` peer w-full p-5 pt-6 font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed pl-4 border-neutral-300 focus:border-black`}
@@ -179,8 +176,6 @@ const page = () => {
                 <div className="flex gap-1">
                   <div className="w-full   relative">
                     <input
-                      // id={id}
-                      // disabled={disabled}
                       {...register("github")}
                       placeholder=" "
                       className={` peer w-full p-5 pt-6 font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed pl-4 border-neutral-300 focus:border-black`}
@@ -200,8 +195,6 @@ const page = () => {
                   </div>
                   <div className="w-full  relative">
                     <input
-                      // id={id}
-                      // disabled={disabled}
                       {...register("twtr")}
                       placeholder=" "
                       className={` peer  w-full p-5 pt-6 font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed pl-4 border-neutral-300 focus:border-black`}
@@ -221,8 +214,6 @@ const page = () => {
                   </div>
                   <div className="w-full  relative">
                     <input
-                      // id={id}
-                      // disabled={disabled}
                       {...register("linkedIn")}
                       placeholder=" "
                       className={` peer w-full p-5 pt-6 font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed pl-4 border-neutral-300 focus:border-black`}
@@ -241,6 +232,38 @@ const page = () => {
                     </label>
                   </div>
                 </div>
+
+                <div className="flex justify-between w-full p-5  border-2  border-neutral-300 rounded-md   ">
+                  <p>You are a? </p>
+                  <span className="">
+                    <input
+                      type="radio"
+                      id="Student"
+                      name="fav_language"
+                      value="Student"
+                      {...register("isA")}
+                    />
+                    <label className="p-1 text-sm" htmlFor="Student">
+                      Student
+                    </label>
+                  </span>
+
+                  <span className="">
+                    <input
+                      type="radio"
+                      id="Working Professional"
+                      name="fav_language"
+                      value="Working Professional"
+                      {...register("isA")}
+                    />
+                    <label
+                      className="p-1 text-sm"
+                      htmlFor="Working Professional"
+                    >
+                      Working Professional
+                    </label>
+                  </span>
+                </div>
               </div>
             </div>
             {/* ------------------------------------------------- */}
@@ -248,46 +271,43 @@ const page = () => {
               {" "}
               <div className="w-full  relative ">
                 <input
-                  // id={id}
-                  // disabled={disabled}
                   {...register("techStack")}
                   placeholder=" "
                   className={` peer  w-full p-5 pt-6 font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed pl-4 border-neutral-300 focus:border-black`}
                 />
                 <label
-                  className={`absolute text-base duration-150 transform -translate-y-3 top-5 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 text-zinc-400 `}
+                  className={`absolute  duration-150 transform text-base -translate-y-3 top-5 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 text-zinc-400 `}
                 >
-                  What's your Tech Stack? (a, b, c...)
+                  Skills or Field of interest (Next.js, Rust, Business
+                  analytics, Management...)
                 </label>
               </div>
               {/* ------------------------------------------------- */}
-              <div className="flex w-full p-5 pt-6 border-2 mt-2 border-neutral-300 rounded-md ">
-                <p>You are a? </p>
-                <span className="pl-10">
-                  {" "}
+              <div className="flex justify-around w-full p-5  border-2 mt-2 border-neutral-300 rounded-md   ">
+                <p>Are you in Tech / Non Tech ? </p>
+                <span className="">
                   <input
                     type="radio"
-                    id="Student"
-                    name="fav_language"
-                    value="Student"
-                    {...register("isA")}
+                    id="Tech"
+                    name="field"
+                    value="Tech"
+                    {...register("field")}
                   />
-                  <label className="p-1" htmlFor="Student">
-                    Student
+                  <label className="p-1 text-sm" htmlFor="Tech">
+                    Tech
                   </label>
                 </span>
 
-                <span className="pl-4">
-                  {" "}
+                <span className="">
                   <input
                     type="radio"
-                    id="Working Professional"
-                    name="fav_language"
-                    value="Working Professional"
-                    {...register("isA")}
+                    id=" Non Tech"
+                    name="field"
+                    value="Non Tech"
+                    {...register("field")}
                   />
-                  <label className="p-1" htmlFor="Working Professional">
-                    Working Professional
+                  <label className="p-1 text-sm" htmlFor="Non Tech">
+                    Non Tech
                   </label>
                 </span>
               </div>
@@ -325,24 +345,31 @@ const page = () => {
                   </span>
                 </div>
                 <hr />
-                <p className="pt-2 text-sm text-neutral-700">
-                  If Yes? PLease Add Topics & Respected link of Video/Post
+                <p className="pt-2 text-xs text-neutral-700">
+                  If Yes? PLease add Topics & Respected link of Video/Post
                   related to it. (if any){" "}
                 </p>
-                <div className="w-full p-4 flex gap-2 border-2 mt-2 border-neutral-300 rounded-md">
+                <div className=" flex gap-2 mt-1 ">
                   <span className="">
                     <div className="w-full mb-2 relative">
                       <input
                         {...register("talk1")}
                         placeholder=" "
-                        className={` peer w-full p-2 pt-6 font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed pl-4 border-neutral-300 focus:border-black`}
+                        className={` peer w-full p-2  font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed pl-4 border-neutral-300 focus:border-black`}
+                      />
+                    </div>
+                    <div className="w-full mb-2 relative">
+                      <input
+                        {...register("talk2")}
+                        placeholder=" "
+                        className={` peer w-full p-2  font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed pl-4 border-neutral-300 focus:border-black`}
                       />
                     </div>
                     <div className="w-full   relative">
                       <input
-                        {...register("talk2")}
+                        {...register("talk3")}
                         placeholder=" "
-                        className={` peer w-full p-2 pt-6 font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed pl-4 border-neutral-300 focus:border-black`}
+                        className={` peer w-full p-2  font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed pl-4 border-neutral-300 focus:border-black`}
                       />
                     </div>
                   </span>
@@ -351,10 +378,10 @@ const page = () => {
                       <input
                         {...register("talk1Link")}
                         placeholder=" "
-                        className={` peer w-full p-2 pt-6 font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed pl-4 border-neutral-300 focus:border-black`}
+                        className={` peer w-full p-2 pl-9 font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed  border-neutral-300 focus:border-black`}
                       />
                       <label
-                        className={`absolute text-base duration-150 transform -translate-y-[15px] top-5 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 text-black-400 `}
+                        className={`absolute text-base top-3 z-10 origin-[0] left-4  text-black-400 `}
                       >
                         <span className="flex gap-[2px]">
                           {" "}
@@ -362,14 +389,31 @@ const page = () => {
                         </span>
                       </label>
                     </div>
-                    <div className="w-full  relative">
+
+                    <div className="w-full  mb-2 relative">
                       <input
                         {...register("talk2Link")}
                         placeholder=" "
-                        className={` peer w-full p-2 pt-6 font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed pl-4 border-neutral-300 focus:border-black`}
+                        className={` peer w-full p-2 pl-9 font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed  border-neutral-300 focus:border-black`}
                       />
                       <label
-                        className={`absolute text-base duration-150 transform -translate-y-[15px] top-5 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 text-black-400 `}
+                        className={`absolute text-base top-3 z-10 origin-[0] left-4  text-black-400 `}
+                      >
+                        <span className="flex gap-[2px]">
+                          {" "}
+                          <FaLink height={18} />
+                        </span>
+                      </label>
+                    </div>
+
+                    <div className="w-full  relative">
+                      <input
+                        {...register("talk3Link")}
+                        placeholder=" "
+                        className={` peer w-full p-2 pl-9 font-light bg-white border-2 rounded-md outline-none transition  disabled:opacity-70 disabled:cursor-not-allowed  border-neutral-300 focus:border-black`}
+                      />
+                      <label
+                        className={`absolute text-base top-3 z-10 origin-[0] left-4  text-black-400 `}
                       >
                         <span className="flex gap-[2px]">
                           {" "}
