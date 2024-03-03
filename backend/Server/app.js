@@ -1,10 +1,11 @@
 const express = require("express");
 const morgan = require("morgan");
-const cron = require("node-cron");
+const schedule = require('node-schedule');
 const colors = require("colors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const { deleteCFP, fetchAndStoreEvents } = require("../Controllers/cfpController");
 
 const app = express();
 app.use(express.json());
@@ -15,9 +16,7 @@ dotenv.config();
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://AdminAditya:Q2qCMhZrQbUWLTMi@cluster0doc.7h1k7mi.mongodb.net/"
-    );
+    await mongoose.connect(process.env.MONGO_URL);
     console.log(
       `MongoDB server connected to ${mongoose.connection.host}`.bgCyan.black
     );
@@ -28,23 +27,18 @@ const connectDB = async () => {
 
 connectDB();
 
-const scheduledTask = cron.schedule(
-  "0 */4 * * *",
-  () => {
-    deleteCFP();
-    fetchAndStoreEvents();
-  },
-  {
-    scheduled: true,
-    timezone: "America/New_York",
-  }
-);
+deleteCFP();
+fetchAndStoreEvents();
 
-scheduledTask.start();
+const job = schedule.scheduleJob('0 2 * * *', function(){
+  deleteCFP();
+  fetchAndStoreEvents();
+})
+
 
 app.use("/api/v1/public", require("../Api-Routes/publicRoutes"));
 
-const port = 5000;
+const port = process.env.PORT;
 
 app.listen(port, () => {
   console.log(
