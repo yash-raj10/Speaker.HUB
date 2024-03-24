@@ -1,6 +1,6 @@
-# TechTalkers
+# Speaker.HUB
 
-TechTalkers is a web platform designed to empower individuals in the tech community to showcase their expertise through a social portfolio of talks given at various conferences. It also serves as a resource hub for learning the art of public speaking in tech and provides a curated list of Call for Proposals (CFPs) from around the world.
+Speaker.HUB is a web platform designed to empower individuals in the tech community to showcase their expertise through a social portfolio of talks given at various conferences. It also serves as a resource hub for learning the art of public speaking in tech and provides a curated list of Call for Proposals (CFPs) from around the world.
 
 ## Features
 
@@ -26,11 +26,11 @@ TechTalkers is a web platform designed to empower individuals in the tech commun
 
 - **Speaker Discovery:** **Organizers searching for speakers in tech** can easily discover profiles of speakers around the world, specifically in niche tech areas.
 
-- **Contact Speakers:** TechTalkers facilitates direct communication between event organizers and speakers, enabling seamless collaboration for upcoming conferences.
+- **Contact Speakers:** Speaker.HUB facilitates direct communication between event organizers and speakers, enabling seamless collaboration for upcoming conferences.
 
 ### How to Get Started
 
-1. **Create an Account:** Login to TechTalkers and create your personal profile.
+1. **Create an Account:** Login to Speaker.HUB and create your personal profile.
 
 2. **Build Your Talk Portfolio:** Add details about the talks you've given & your niche topics.
 
@@ -38,7 +38,7 @@ TechTalkers is a web platform designed to empower individuals in the tech commun
 
 4. **Browse Latest CFPs:** Check out the CFP section to explore the latest opportunities to speak at tech conferences globally.
 
-5. **Connect with the Community:** Build connections with other TechTalkers and conference organizers to enhance your visibility in the tech community.
+5. **Connect with the Community:** Build connections with other conf speakers and conference organizers to enhance your visibility in the tech community.
 
 ### Technologies Used
 
