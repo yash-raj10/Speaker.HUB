@@ -6,7 +6,7 @@ TechTalkers is a web platform designed to empower individuals in the tech commun
 
 For a detailed walkthrough and demo of the Anon web app, check out our YouTube video:
 
-[![Anon Demo]()](https://youtu.be/Z-Dt9u02Fpo?si=oj4TQQW84p5iUemT)
+[![TechTalkers Demo]()](https://youtu.be/Z-Dt9u02Fpo?si=oj4TQQW84p5iUemT)
 
 
 ## Features
